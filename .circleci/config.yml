@@ -87,10 +87,10 @@ jobs:
                   name: Deploy to Cloundfront
                   command: |
                       aws configure set preview.cloundfront
-                      if [ "${CIRCLE_BRANCH}" == master ]
+                      if [ "${CIRCLE_BRANCH}" == "master" ]
                       then
                           aws cloudfront create-invalidation --distribution-id ${PRODUCTION_DISTRIBUTION_ID} --path /\*
-                      elif [ "${CIRCLE_BRANCH}" == "staging"]
+                      elif [ "${CIRCLE_BRANCH}" == "staging" ]
                       then
                           aws cloudfront create-invalidation --distribution-id ${STAGING_DISTRIBUTION_ID} --path /\*
                       else
