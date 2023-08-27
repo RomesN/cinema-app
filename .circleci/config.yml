@@ -81,8 +81,8 @@ jobs:
                       npm install
                       npm run build
                       cd build
-                      zip ../build.zip -r * .[^.]
-                      echo "Build successful
+                      zip ../build.zip -r * .[^.]*
+                      echo "Build successful"
             - run:
                   name: Deploy to Cloundfront
                   command: |
