@@ -58,7 +58,7 @@ jobs:
     steps:
       - checkout
       - *show-current-branch-name
-      - *restore-chace
+      - *restore-cache
       - run:
           name: Run linting
           command: npm run lint
