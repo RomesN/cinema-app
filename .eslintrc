@@ -22,7 +22,6 @@
     "space-before-function-paren": [0, { "anonymous": "always", "named": "always" }],
     "camelcase": 0,
     "no-return-assign": 0,
-    "quotes": ["error", "double"],
     "react/jsx-uses-react": "off",
     "react/react-in-jsx-scope": "off"
   }
