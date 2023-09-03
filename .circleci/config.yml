@@ -130,8 +130,8 @@ jobs:
                 {
                   "type": "header",
                   "text": {
-                    "type": "plaing_text",
-                    "text": "${CIRCLE_BRANCH} branch deployment to aws s3 and cloundfront is complete. 👍",
+                    "type": "plain_text",
+                    "text": "${CIRCLE_BRANCH} branch deployment to aws s3 and cloudfront is complete. 👍",
                     "emoji": true
                   }
                 },
