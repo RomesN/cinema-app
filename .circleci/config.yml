@@ -121,11 +121,10 @@ jobs:
     steps:
       - run: echo "Slack notification"
       - slack/notify:
-          custom: 
-            event: "always"
-            channel: "cinema-circleci"
-            template: ''
-            custom: |
+          event: "always"
+          channel: "cinema-circleci"
+          template: ''
+          custom: |
             {
               "blocks": [
                 {
