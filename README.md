@@ -1,1 +1,1 @@
-This is repo containing work done within Udemy course (Build a React & Redux App w/ CircleCI CI/CD, AWS & Terraform)[https://www.udemy.com/course/build-a-modern-react-and-redux-app-with-circleci-cicd-aws/].
+This is repo containing work done within Udemy course [Build a React & Redux App w/ CircleCI CI/CD, AWS & Terraform](https://www.udemy.com/course/build-a-modern-react-and-redux-app-with-circleci-cicd-aws/).
