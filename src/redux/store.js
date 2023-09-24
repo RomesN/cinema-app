@@ -5,9 +5,11 @@ import rootReducers from './reducers';
 
 const initialState = {};
 
-export const store = configureStore({
+const store = configureStore({
   reducer: rootReducers,
   devTools: true,
   middleware: [thunk],
   preloadedState: initialState
 });
+
+export default store;
