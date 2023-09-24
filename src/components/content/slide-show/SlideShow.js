@@ -1,9 +1,9 @@
-import './SlideShow.scss';
-
 import { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 
-const SlideShow = ({ images, auto, showArrows }) => {
+import './Slideshow.scss';
+
+const Slideshow = ({ images, auto, showArrows }) => {
   const [state, setState] = useState({
     slideShow: images[0],
     slideIndex: 0
@@ -12,6 +12,11 @@ const SlideShow = ({ images, auto, showArrows }) => {
   const { slideShow, slideIndex } = state;
 
   useEffect(() => {
+    setState({
+      ...state,
+      slideIndex: 0,
+      slideShow: images[0]
+    });
     if (auto) {
       const timeInterval = setInterval(autoMoveSlide, 5000);
       setSliderInterval(timeInterval);
@@ -21,7 +26,7 @@ const SlideShow = ({ images, auto, showArrows }) => {
         clearInterval(sliderInterval);
       };
     }
-  }, []);
+  }, [images]);
 
   const autoMoveSlide = () =>
     setState((prev) => {
@@ -79,12 +84,7 @@ const SlideShow = ({ images, auto, showArrows }) => {
       <div className="slider">
         <div className="slider-slides">
           {images && images.length && slideShow && (
-            <div
-              className="slider-image"
-              style={{
-                backgroundImage: `url(${slideShow.url})`
-              }}
-            ></div>
+            <div className="slider-image" style={{ backgroundImage: `url(${slideShow.url})` }}></div>
           )}
         </div>
         {showArrows && <RenderArrows />}
@@ -94,11 +94,11 @@ const SlideShow = ({ images, auto, showArrows }) => {
   );
 };
 
-SlideShow.propTypes = {
+Slideshow.propTypes = {
   images: PropTypes.array.isRequired,
   auto: PropTypes.bool.isRequired,
   showArrows: PropTypes.bool.isRequired,
   currentSlide: PropTypes.number
 };
 
-export default SlideShow;
+export default Slideshow;
