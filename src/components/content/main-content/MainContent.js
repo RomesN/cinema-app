@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
 import './MainContent.scss';
-import Slideshow from '../slide-show/Slideshow';
+import Slideshow from '../slideshow/Slideshow';
 import Paginate from '../paginate/Paginate';
 import Grid from '../grid/Grid';
 import { IMAGE_URL } from '../../../services/movies.service';
