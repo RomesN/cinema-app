@@ -7,6 +7,8 @@ import './App.scss';
 import Header from './components/header/Header';
 import Main from './components/main/Main';
 import Details from './components/content/details/Details';
+import ErrorBoundary from './components/error/ErrorBoundary';
+import ErrorPage from './components/error/ErrorPage';
 import { appRoutes } from './redux/actions/routes';
 import { AppRoutes } from './routes';
 
@@ -22,6 +24,11 @@ const App = (props) => {
       id: 2,
       path: '/:id/:name/details',
       component: Details
+    },
+    {
+      id: 3,
+      path: '*',
+      component: ErrorPage
     }
   ];
 
@@ -32,7 +39,9 @@ const App = (props) => {
   return (
     <div className="app">
       <BrowserRouter>
-        <Header />
+        <ErrorBoundary>
+          <Header />
+        </ErrorBoundary>
         <AppRoutes />
       </BrowserRouter>
     </div>
