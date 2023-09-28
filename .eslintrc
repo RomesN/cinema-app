@@ -23,6 +23,7 @@
     "camelcase": 0,
     "no-return-assign": 0,
     "react/jsx-uses-react": "off",
-    "react/react-in-jsx-scope": "off"
+    "react/react-in-jsx-scope": "off",
+    "multiline-ternary": ["warn", "never"]
   }
 }
