@@ -6,14 +6,17 @@ import './Main.scss';
 import MainContent from '../content/main-content/MainContent';
 import Spinner from '../spinner/Spinner';
 import { loadMoreMovies, setResponsePageNumber } from '../../redux/actions/movies';
+import { pathURL } from '../../redux/actions/routes';
 import SearchResult from '../content/search-result/SearchResult';
+import { useLocation } from 'react-router-dom';
 
 const Main = (props) => {
-  const { loadMoreMovies, page, totalPages, setResponsePageNumber, movieType, searchResult } = props;
+  const { loadMoreMovies, page, totalPages, setResponsePageNumber, movieType, searchResult, pathURL, errors } = props;
   const [loading, setLoading] = useState(false);
   const [currentPage, setCurrentPage] = useState(page);
   const mainRef = useRef();
   const bottomLineRef = useRef();
+  const location = useLocation();
 
   useEffect(() => {
     setLoading(true);
@@ -23,6 +26,7 @@ const Main = (props) => {
   }, []);
 
   useEffect(() => {
+    pathURL(location.pathname, location.pathname);
     setResponsePageNumber(currentPage, totalPages);
     // eslint-disable-next-line
   }, [currentPage, totalPages]);
@@ -47,10 +51,16 @@ const Main = (props) => {
 
   return (
     <>
-      <div className="main" ref={mainRef} onScroll={handleScroll}>
-        {loading ? <Spinner /> : <>{searchResult && searchResult.length === 0 ? <MainContent /> : <SearchResult />}</>}
-        <div ref={bottomLineRef}></div>
-      </div>
+      {!errors.message && !errors.statusCode && (
+        <div className="main" ref={mainRef} onScroll={handleScroll}>
+          {loading ? (
+            <Spinner />
+          ) : (
+            <>{searchResult && searchResult.length === 0 ? <MainContent /> : <SearchResult />}</>
+          )}
+          <div ref={bottomLineRef}></div>
+        </div>
+      )}
     </>
   );
 };
@@ -62,7 +72,10 @@ Main.propTypes = {
   loadMoreMovies: PropTypes.func,
   setResponsePageNumber: PropTypes.func,
   movieType: PropTypes.string,
-  searchResult: PropTypes.array
+  searchResult: PropTypes.array,
+  pathURL: PropTypes.func,
+  match: PropTypes.object,
+  errors: PropTypes.object
 };
 
 const mapStateToProps = (state) => ({
@@ -70,7 +83,8 @@ const mapStateToProps = (state) => ({
   page: state.movies.page,
   totalPages: state.movies.totalPages,
   movieType: state.movies.movieType,
-  searchResult: state.movies.searchResult
+  searchResult: state.movies.searchResult,
+  errors: state.errors
 });
 
-export default connect(mapStateToProps, { loadMoreMovies, setResponsePageNumber })(Main);
+export default connect(mapStateToProps, { loadMoreMovies, setResponsePageNumber, pathURL })(Main);
