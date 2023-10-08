@@ -41,9 +41,9 @@ const Main = (props) => {
   };
 
   const handleScroll = () => {
-    const containerHeight = mainRef.current.getBoundingClientRect().height;
+    const containerBottom = mainRef.current.getBoundingClientRect().bottom;
     const { top: bottomLineTop } = bottomLineRef.current.getBoundingClientRect();
-    if (bottomLineTop <= containerHeight) {
+    if (bottomLineTop <= containerBottom) {
       // fetch data
       fetchData();
     }
