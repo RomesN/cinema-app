@@ -14,7 +14,7 @@ executors:
     resource_class: small
   docker-publisher:
     environment:
-      IMAGE_NAME: omesnN/cinemadb
+      IMAGE_NAME: omesn/cinemadb
     docker:
       - image: circleci/buildpack-deps:stretch
   terraform-executor:
