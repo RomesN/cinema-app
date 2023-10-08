@@ -5,6 +5,16 @@ import './index.scss';
 import App from './App';
 import store from './redux/store';
 import reportWebVitals from './reportWebVitals';
+import * as Sentry from '@sentry/react';
+
+if (process.env.NODE_ENV === 'production') {
+  Sentry.init({
+    dsn: process.env.REACT_APP_SENTRY_DSN,
+    beforeBreadcrumb(breadcrumb, _hint) {
+      return breadcrumb.category === 'ui.click' ? null : breadcrumb;
+    }
+  });
+}
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(

@@ -1,6 +1,6 @@
 import { Component } from 'react';
 import PropTypes from 'prop-types';
-
+import * as Sentry from '@sentry/browser';
 import ErrorPage from './ErrorPage';
 
 class ErrorBoundary extends Component {
@@ -12,6 +12,15 @@ class ErrorBoundary extends Component {
 
   componentDidCatch(error, errorInfo) {
     this.setState({ error, errorInfo });
+    if (process.env.NODE_ENV === 'production') {
+      Sentry.withScope((scope) => {
+        scope.setTag('Custom-Tag', 'ErrorBoundary');
+        scope.setLevel('Error');
+        scope.setExtras(errorInfo);
+        const eventId = Sentry.captureException(error);
+        this.setState({ eventId });
+      });
+    }
   }
 
   clearState() {
